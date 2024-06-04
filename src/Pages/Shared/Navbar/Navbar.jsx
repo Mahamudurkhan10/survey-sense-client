@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
-     const user = true;
+     const user =true;
      const navItem = <>
        <li> <NavLink to={'/'}><a> Home</a></NavLink> </li>
        <li> <NavLink to={'/survey'}><a> Survey </a></NavLink> </li>
@@ -14,12 +14,12 @@ const Navbar = () => {
        <li> <button className="btn btn-ghost">  <a> Logout </a></button> </li>
      </>
      return (
-          <div>
-               <div className="navbar bg-base-100">
+          <div >
+               <div className="navbar  max-w-screen-xl fixed z-10">
                     <div className="flex-1">
                          <a className="btn btn-ghost text-xl"> Survey Sense </a>
                     </div>
-                    <div className="flex-none">
+                    <div className="flex-1 justify-end">
                          <div className="dropdown dropdown-end">
                            <ul className="flex gap-12 mr-6">  {navItem}</ul>
                              
