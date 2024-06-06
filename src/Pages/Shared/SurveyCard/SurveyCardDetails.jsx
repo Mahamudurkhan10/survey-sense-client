@@ -16,18 +16,18 @@ const SurveyCardDetails = () => {
           vote } = survey;
      return (
           <div className="pt-24" >
-                 <div className="text-center mb-7">
+               <div className="text-center mb-7">
                     <h1 className="text-4xl text-blue-900 font-bold uppercase ">  Survey Card Details </h1>
-                    
+
                </div>
 
                <article className="rounded-xl w-3/4 mx-auto h-[360px] bg-white p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
                     <div className="sm:gap-8">
 
-                    
+
 
                          <div>
-                         <div className="flex gap-6  mb-5 text-xl font-extrabold">
+                              <div className="flex gap-6  mb-5 text-xl font-extrabold">
                                    <h1 > Category : <span className="text-lg font-medium text-yellow-700">{category}</span> </h1>
                                    <h1> Title : <span className="text-lg font-medium text-blue-500">{title}</span></h1>
                               </div>
@@ -71,37 +71,52 @@ const SurveyCardDetails = () => {
                                    <h1 className="text-lg font-bold text-blue-700"> Status: <span className="text-orange-600 font-bold"> {status} </span> </h1>
                               </div>
                               <div className="divider divider-success"></div>
-                              
+
 
                               <div className=" mt-3 ">
 
                               </div>
                          </div>
                          <div className="flex justify-around ">
-                         <div
-                              className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
-                              aria-hidden="true"
-                         >
-                              <h1 className="flex items-center gap-2">  <FaThumbsUp className="text-xl text-sky-600"></FaThumbsUp> <span className="text-green-900 font-bold">{vote}</span> </h1>
+
+                              {/* Open the modal using document.getElementById('ID').showModal() method */}
+                              <button onClick={() => document.getElementById('my_modal_1').showModal()}><div
+                                   className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
+                                   aria-hidden="true"
+                              >
+                                   <h1 className="flex items-center gap-2">  <FaThumbsUp className="text-xl "></FaThumbsUp> <span className="text-green-900 font-bold">{vote}</span> </h1>
 
 
-                         </div>
-                         <div
-                              className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-black"
-                              aria-hidden="true"
-                         >
-                              <h1 className="flex items-center gap-2">  <FaCommentDots className="text-xl text-black"></FaCommentDots> <span className="text-green-900 font-bold"></span> </h1>
+                              </div></button> 
+                              <dialog id="my_modal_1" className="modal">
+                                   <div className="modal-box">
+                                          <form action="">
+                                             
+                                          </form>
+                                        <div className="modal-action">
+                                             <form method="dialog">
+                                                  
+                                                  <button className="btn">Close</button>
+                                             </form>
+                                        </div>
+                                   </div>
+                              </dialog>
+                              <div
+                                   className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-black"
+                                   aria-hidden="true"
+                              >
+                                   <h1 className="flex items-center gap-2">  <FaCommentDots className="text-xl text-black"></FaCommentDots> <span className="text-green-900 font-bold"></span> </h1>
 
 
-                         </div>
-                         <div
-                              className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-red-500"
-                              aria-hidden="true"
-                         >
-                              <h1 className="flex items-center gap-2">  <MdReportProblem className="text-2xl text-red-600"></MdReportProblem> <span className="text-green-900 font-bold"></span> </h1>
+                              </div>
+                              <div
+                                   className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-red-500"
+                                   aria-hidden="true"
+                              >
+                                   <h1 className="flex items-center gap-2">  <MdReportProblem className="text-2xl text-red-600"></MdReportProblem> <span className="text-green-900 font-bold"></span> </h1>
 
 
-                         </div>
+                              </div>
 
                          </div>
                     </div>

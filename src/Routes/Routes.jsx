@@ -12,6 +12,10 @@ import SurveyorHome from "../Pages/DashBorad/Surveyor/SurveyorHome";
 import CreateSurvey from "../Pages/DashBorad/Surveyor/CreateSurvey";
 import AllSurvey from "../Pages/DashBorad/Surveyor/AllSurvey";
 import SurveyResponse from "../Pages/DashBorad/Surveyor/SurveyResponse";
+import Update from "../Pages/DashBorad/Surveyor/Update";
+import Login from "../Pages/Home/Login/Login";
+import SingUp from "../Pages/Home/SinUp/SingUp";
+import AllUsers from "../Pages/DashBorad/Admin/AllUsers";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -29,6 +33,15 @@ import SurveyResponse from "../Pages/DashBorad/Surveyor/SurveyResponse";
           path:'/surveyDetails/:id',
           element: <SurveyCardDetails></SurveyCardDetails>,
           loader: ({params})=> fetch(`http://localhost:5000/surveyDetail/${params.id}`)
+        },
+        {
+          path:'/login',
+          element: <Login></Login>
+
+        },
+        {
+          path:'/singUp',
+          element: <SingUp></SingUp>
         }
        ]
      },
@@ -53,6 +66,16 @@ import SurveyResponse from "../Pages/DashBorad/Surveyor/SurveyResponse";
         {
           path:'surveyResponse',
           element:<SurveyResponse></SurveyResponse>
+        },
+        {
+          path:'update/:id',
+          element: <Update></Update>,
+          loader:({params})=> fetch(`http://localhost:5000/survey/${params.id}`)
+        },
+        // Admin
+        {
+          path:'allUsers',
+          element: <AllUsers></AllUsers>
         }
       ]
      }

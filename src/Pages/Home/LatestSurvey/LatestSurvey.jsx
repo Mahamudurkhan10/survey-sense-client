@@ -8,12 +8,7 @@ const LatestSurvey = () => {
      return (
           <div>
                <div className="text-center">
-                    {
-                    [...surveys].reverse().map(s => <>
-                          <li> {s._id} </li>
-                          <li> {s.timestamp.toString().split('T')[0]} </li>
-                         </>)
-                    }
+                   
                     <h1 className="text-4xl font-bold uppercase text-green-700 mb-4"> Latest Surveys </h1>
                     <p className="w-3/5 font-medium text-sm mx-auto text-center "> Exciting news! A new survey card is now available, offering fresh opportunities to share your opinions and shape the future. Don't miss out on this chance to make your voice heard! </p>
                </div>

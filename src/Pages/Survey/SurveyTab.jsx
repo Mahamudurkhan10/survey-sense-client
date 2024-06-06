@@ -12,7 +12,8 @@ console.log(survey);
                     <article className="rounded-xl   bg-gray-200 p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
                     <div className="flex items-start  sm:gap-8">
                    
-                     <div
+                    <NavLink to={`/surveyDetails/${card._id}`}>
+                    <div
                               className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
                               aria-hidden="true"
                          >
@@ -20,6 +21,7 @@ console.log(survey);
                            
 
                          </div>
+                    </NavLink>
                    
 
                          <div>
