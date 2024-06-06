@@ -5,7 +5,7 @@ const Navbar = () => {
      const user =true;
      const navItem = <>
        <li> <NavLink to={'/'}><a> Home</a></NavLink> </li>
-       <li> <NavLink to={'/survey'}><a> Survey </a></NavLink> </li>
+       <li> <NavLink to={'/survey/Employee Engagement'}><a> Survey </a></NavLink> </li>
        <li> <NavLink to={'/pricing'}><a> Pricing </a></NavLink> </li>
      </>
      const navItem2 = <>
@@ -15,9 +15,9 @@ const Navbar = () => {
      </>
      return (
           <div >
-               <div className="navbar  max-w-screen-xl fixed z-10">
+               <div className="navbar  bg-gray-900 text-lg font-semibold text-blue-300 opacity-90 max-w-screen-xl fixed z-10">
                     <div className="flex-1">
-                         <a className="btn btn-ghost text-xl"> Survey Sense </a>
+                         <NavLink to={'/'} className="btn btn-ghost text-xl"> Survey <span className="text-green-600 font-bold">Sense</span> </NavLink>
                     </div>
                     <div className="flex-1 justify-end">
                          <div className="dropdown dropdown-end">
@@ -31,11 +31,11 @@ const Navbar = () => {
                                         <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                                    </div>
                               </div>
-                              <ul tabIndex={0} className="menu space-y-3  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                              <ul tabIndex={0} className="menu space-y-3 text-black  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-300 rounded-box w-52">
                                    
                                        {navItem2}
                               </ul> </div>
-                              : <button className="btn btn-success text-white font-bold"> Join Us </button>
+                              : <button className="btn rounded-full btn-success uppercase text-white font-bold"> Join Us </button>
 
                               }
                          </div>

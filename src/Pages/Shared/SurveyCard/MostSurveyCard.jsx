@@ -15,14 +15,14 @@ const MostSurveyCard = ({survey}) => {
           vote } = survey;
      return (
           <div className="mt-7 mb-5">
-               <article className="rounded-xl h-[340px] bg-white p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
+               <article className="rounded-xl  h-[340px] bg-blue-50 p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
                     <div className="flex items-start  sm:gap-8">
                    
                      <div
                               className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
                               aria-hidden="true"
                          >
-                                   <h1 className="flex items-center gap-2">  <FaThumbsUp className="text-xl text-green-600"></FaThumbsUp> <span className="text-orange-400 font-bold">{vote}</span> </h1>
+                                   <h1 className="flex items-center gap-2">  <FaThumbsUp className="text-xl text-blue-600"></FaThumbsUp> <span className="text-orange-400 font-bold">{vote}</span> </h1>
                            
 
                          </div>
@@ -71,7 +71,7 @@ const MostSurveyCard = ({survey}) => {
                               </div>
                               
                          <div className=" mt-3 ">
-                         <NavLink to={`/surveyDetails/${_id}`}>   <button className="btn  btn-outline  btn-success font-bold "> View Details </button>  </NavLink>
+                         <NavLink to={`/surveyDetails/${_id}`}>   <button className="btn  btn-outline  btn-info font-bold "> View Details </button>  </NavLink>
 
                          </div>
                          </div>
