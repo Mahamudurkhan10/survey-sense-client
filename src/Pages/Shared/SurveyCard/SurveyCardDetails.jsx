@@ -1,10 +1,22 @@
-import { FaComment, FaCommentDots, FaThumbsUp } from "react-icons/fa";
-import { MdBugReport, MdOutlineBugReport, MdReport, MdReportOff, MdReportProblem } from "react-icons/md";
-import { NavLink, useLoaderData } from "react-router-dom";
+import { FaThumbsUp } from "react-icons/fa";
+import { MdReportProblem } from "react-icons/md";
+import { useLoaderData  } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import { useRef, useState } from "react";
+
+
 
 
 const SurveyCardDetails = () => {
-     const survey = useLoaderData();
+     const surveyLoaded = useLoaderData();
+     const [survey, setSurvey] = useState(surveyLoaded);
+     const { user } = useAuth();
+     const axiosPublic = useAxiosPublic();
+     const [reportDisable, setReportDisable] = useState(true)
+  
+     const voteModalRef = useRef(null); 
      const { title,
           _id,
           description,
@@ -13,7 +25,76 @@ const SurveyCardDetails = () => {
           options,
           status,
           timestamp,
-          vote } = survey;
+          vote, noVote, yesVote } = survey;
+     const fetchData = () => {
+          axiosPublic.get(`/survey/${_id}`)
+               .then(res => {
+                    setSurvey(res.data)
+               })
+     }
+     const handleVoteForm = (e) => {
+          e.preventDefault()
+          const newVote = e.target.vote.value;
+
+          if (newVote === 'yes') {
+               const yes = yesVote + 1;
+               const vote = yes + noVote;
+               console.log(yes, noVote, vote);
+               const voteUpdate = { yes, vote }
+               axiosPublic.patch(`/yesVoteUpdate/${_id}`, voteUpdate)
+                    .then(res => {
+                         if (res.data.modifiedCount) {
+                              fetchData()
+                              Swal.fire({
+                                   position: "top-end",
+                                   icon: "success",
+                                   title: `survey Vote is done `,
+                                   showConfirmButton: false,
+                                   timer: 1500
+                              });
+                              voteModalRef.current.close();
+                         }
+                    })
+          }
+          else if (newVote === 'no') {
+               const no = noVote + 1;
+               const vote = no + yesVote;
+               const voteUpdate = { no, vote }
+               axiosPublic.patch(`/noVoteUpdate/${_id}`, voteUpdate)
+                    .then(res => {
+                         if (res.data.modifiedCount) {
+                              fetchData()
+                              Swal.fire({
+                                   position: "top-start",
+                                   icon: "success",
+                                   title: `survey Vote is done `,
+                                   showConfirmButton: false,
+                                   timer: 1500
+                              });
+                         }
+                    })
+          }
+     }
+     const handleReportFrom = (e) => {
+          e.preventDefault()
+          const reportData = e.target.report.value;
+          const email = user?.email;
+          const surveyId = _id
+          const report = { reportData, email, title, category, timestamp, deadline_date, surveyId }
+          axiosPublic.post('/report', report)
+               .then(res => {
+                    if (res.data.insertedId) {
+                         setReportDisable(false)
+                         Swal.fire({
+                              position: "top-end",
+                              icon: "success",
+                              title: ` ${title} survey is reported `,
+                              showConfirmButton: false,
+                              timer: 1500
+                         });
+                    }
+               })
+     }
      return (
           <div className="pt-24" >
                <div className="text-center mb-7">
@@ -79,44 +160,87 @@ const SurveyCardDetails = () => {
                          </div>
                          <div className="flex justify-around ">
 
-                              {/* Open the modal using document.getElementById('ID').showModal() method */}
-                              <button onClick={() => document.getElementById('my_modal_1').showModal()}><div
+                              <> <button className="" onClick={() => document.getElementById('my_modal_5').showModal()}>    <div
                                    className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
                                    aria-hidden="true"
                               >
                                    <h1 className="flex items-center gap-2">  <FaThumbsUp className="text-xl "></FaThumbsUp> <span className="text-green-900 font-bold">{vote}</span> </h1>
 
 
-                              </div></button> 
-                              <dialog id="my_modal_1" className="modal">
-                                   <div className="modal-box">
-                                          <form action="">
-                                             
-                                          </form>
-                                        <div className="modal-action">
-                                             <form method="dialog">
-                                                  
-                                                  <button className="btn">Close</button>
+                              </div></button>
+                                   <dialog id="my_modal_5" ref={voteModalRef} className="modal modal-bottom sm:modal-middle">
+                                        <div className="modal-box">
+                                             <form onSubmit={handleVoteForm} action="">
+                                                  <label htmlFor="">
+
+                                                  </label>
+                                                  <div>
+                                                       <input type="radio" name="vote" id="" value={'yes'} /> yes
+                                                       <input type="radio" name="vote" id="" value={'no'} /> No
+                                                  </div>
+
+                                                  <input  className="btn  btn-success btn-outline" type="submit" value="Submit" />
                                              </form>
+                                             <div className="modal-action">
+                                                  <form method="dialog">
+                                                       {/* if there is a button in form, it will close the modal */}
+                                                       <button className="btn">Close</button>
+                                                  </form>
+                                             </div>
                                         </div>
+                                   </dialog>
+                              </>
+
+
+                              <div
+                                   className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
+                                   aria-hidden="true"
+                              >
+                                   <h1 className="flex items-center gap-2">  <FaThumbsUp className="text-xl "></FaThumbsUp> <span className="text-green-900 font-bold">{vote}</span> </h1>
+
+
+                              </div>
+                              {
+                                   reportDisable ? <> <button className="" onClick={() => document.getElementById('my_modal_6').showModal()}>  <div
+                                        className="hidden btn  bg-orange-300 sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
+                                        aria-hidden="true"
+                                   >
+                                        <h1 className="flex items-center gap-2">  <MdReportProblem className="text-xl text-red-900"></MdReportProblem>  </h1>
+
+
+                                   </div></button>
+                                        <dialog id="my_modal_6" className="modal modal-bottom sm:modal-middle">
+                                             <div className="modal-box">
+                                                  <form onSubmit={handleReportFrom} action="">
+                                                       <label className="label" htmlFor=""> Why are you Report?? </label>
+                                                       <textarea required name="report" className="textarea textarea-accent" placeholder="type here reason"></textarea>
+                                                       <div className="mt-4">
+
+                                                            <input className="btn w-1/2 btn-success btn-outline" type="submit" value="submit" />
+
+                                                       </div>
+                                                  </form>
+                                                  <div className="modal-action">
+                                                       <form method="dialog">
+                                                            {/* if there is a button in form, it will close the modal */}
+                                                            <button className="btn">Close</button>
+                                                       </form>
+                                                  </div>
+                                             </div>
+                                        </dialog>
+                                   </> : <div
+                                        className="hidden disabled btn bg-orange-300 sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
+                                        aria-hidden="true"
+                                   >
+                                        <h1 className="flex items-center gap-2">  <MdReportProblem className="text-xl text-red-900"></MdReportProblem>  </h1>
+
+
                                    </div>
-                              </dialog>
-                              <div
-                                   className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-black"
-                                   aria-hidden="true"
-                              >
-                                   <h1 className="flex items-center gap-2">  <FaCommentDots className="text-xl text-black"></FaCommentDots> <span className="text-green-900 font-bold"></span> </h1>
+                              }
+
+                              {/* Open the modal using document.getElementById('ID').showModal() method */}
 
 
-                              </div>
-                              <div
-                                   className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-red-500"
-                                   aria-hidden="true"
-                              >
-                                   <h1 className="flex items-center gap-2">  <MdReportProblem className="text-2xl text-red-600"></MdReportProblem> <span className="text-green-900 font-bold"></span> </h1>
-
-
-                              </div>
 
                          </div>
                     </div>

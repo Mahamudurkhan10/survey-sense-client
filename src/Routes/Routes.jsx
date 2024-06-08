@@ -16,6 +16,7 @@ import Update from "../Pages/DashBorad/Surveyor/Update";
 import Login from "../Pages/Home/Login/Login";
 import SingUp from "../Pages/Home/SinUp/SingUp";
 import AllUsers from "../Pages/DashBorad/Admin/AllUsers";
+import Report from "../Pages/DashBorad/User/Report";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -76,6 +77,11 @@ import AllUsers from "../Pages/DashBorad/Admin/AllUsers";
         {
           path:'allUsers',
           element: <AllUsers></AllUsers>
+        },
+        // User 
+        {
+          path:'userReport',
+          element: <Report></Report>
         }
       ]
      }

@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 
@@ -10,14 +11,23 @@ const CreateSurvey = () => {
           const category = e.target.category.value;
           const options = e.target.option.value;
           const deadline_date = e.target.date.value;
-          const vote = 0
-          const surveyData = {title,description,category,deadline_date,options,vote}
+          const yesVote = 0;
+          const noVote = 0;
+          const vote = yesVote +noVote;
+          console.log(vote);
+          const surveyData = {title,description,category,deadline_date,options, yesVote,noVote, vote}
           axiosPublic.post('/surveys',surveyData)
-          // .then(res =>{
-          //      if(res.data.insertedId){
-
-          //      }
-          // })
+          .then(res =>{
+               if(res.data.insertedId){
+                    Swal.fire({
+                         position: "top-end",
+                         icon: "success",
+                         title: ` ${title} survey is created ` ,
+                         showConfirmButton: false,
+                         timer: 1500
+                    });
+               }
+          })
      }
      return (
           <div className=" ml-10 ">

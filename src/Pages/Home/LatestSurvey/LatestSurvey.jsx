@@ -3,7 +3,8 @@ import SurveyCard from "../../Shared/SurveyCard/SurveyCard";
 
 
 const LatestSurvey = () => {
-     const [surveys] = useSurveys()
+     const [surveys,,refetch] = useSurveys()
+     refetch()
   console.log(surveys);
      return (
           <div>
