@@ -32,6 +32,10 @@ const SurveyCardDetails = () => {
                     setSurvey(res.data)
                })
      }
+     const email = user?.email;
+     const name = user?.displayName;
+     const resId = _id;
+     const response = {email,name,resId,title,category,vote,deadline_date,timestamp,yesVote,noVote,options,status}
      const handleVoteForm = (e) => {
           e.preventDefault()
           const newVote = e.target.vote.value;
@@ -53,6 +57,20 @@ const SurveyCardDetails = () => {
                                    timer: 1500
                               });
                               voteModalRef.current.close();
+                              
+                              
+                              axiosPublic.post(`/response`,response)
+                              .then(res =>{
+                                   if(res.data.insertedId){
+                                        Swal.fire({
+                                             position: "top-center",
+                                             icon: "success",
+                                             title: `survey Vote is done `,
+                                             showConfirmButton: false,
+                                             timer: 1500
+                                        });
+                                   }
+                              })
                          }
                     })
           }
@@ -71,6 +89,19 @@ const SurveyCardDetails = () => {
                                    showConfirmButton: false,
                                    timer: 1500
                               });
+                              voteModalRef.current.close();
+                              axiosPublic.post(`/response`,response)
+                              .then(res =>{
+                                   if(res.data.insertedId){
+                                        Swal.fire({
+                                             position: "top-center",
+                                             icon: "success",
+                                             title: `survey Vote is done `,
+                                             showConfirmButton: false,
+                                             timer: 1500
+                                        });
+                                   }
+                              })
                          }
                     })
           }

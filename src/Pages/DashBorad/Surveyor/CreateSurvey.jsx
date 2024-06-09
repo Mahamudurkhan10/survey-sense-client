@@ -96,7 +96,7 @@ const CreateSurvey = () => {
                               <div className="label">
                                    <span className="label-text font-bold"> Dateline </span>
                               </div>
-                              <input type="date" name="date" placeholder="Type here" className="input input-bordered " />
+                              <input required type="date" name="date" placeholder="Type here" className="input input-bordered " />
 
                          </label>
                     </div>

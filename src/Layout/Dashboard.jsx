@@ -29,6 +29,7 @@ const Dashboard = () => {
                          <>
                               <li> <NavLink to="/dashboard/adminHome"> <FaHome /> Admin Home </NavLink> </li>
                               <li> <NavLink to="/dashboard/allUsers"> <FaUsers /> All Users </NavLink> </li>
+                              <li> <NavLink to="/dashboard/publishedSurvey"> <FaUsers /> All Users </NavLink> </li>
                          </>
                     );
                case 'surveyor':
