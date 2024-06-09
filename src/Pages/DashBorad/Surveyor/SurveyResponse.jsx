@@ -29,7 +29,7 @@ const SurveyResponse = () => {
                                         <th>Title</th>
                                         <th>Options</th>
                                         <th> Status </th>
-                                        <th> Vote </th>
+                                       
                                         <th> Deadline Date </th>
                                         <th> Create Date </th>
                                          <th> Details </th>
@@ -45,7 +45,7 @@ const SurveyResponse = () => {
                                              <td> {survey.title} </td>
                                              <td> {survey.options} </td>
                                              <td> {survey.status} </td>
-                                             <td className="flex items-center justify-center"> <FaThumbsUp className="text-green-900"></FaThumbsUp> {survey.vote} </td>
+                                             
                                              <td> {survey.deadline_date} </td>
                                              <td> {survey.timestamp.toString().split("T")[0]} </td>
                                               <td> <Link to={`/dashboard/responseDetails/${survey.resId}`}><button className="btn btn-info btn-outline"> Details </button></Link> </td>
