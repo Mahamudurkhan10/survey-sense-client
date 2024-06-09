@@ -18,6 +18,7 @@ import SingUp from "../Pages/Home/SinUp/SingUp";
 import AllUsers from "../Pages/DashBorad/Admin/AllUsers";
 import Report from "../Pages/DashBorad/User/Report";
 import ResponseDetails from "../Pages/DashBorad/Surveyor/ResponseDetails";
+import StatusSurvey from "../Pages/DashBorad/Admin/StatusSurvey";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -83,6 +84,10 @@ import ResponseDetails from "../Pages/DashBorad/Surveyor/ResponseDetails";
         {
           path:'allUsers',
           element: <AllUsers></AllUsers>
+        },
+        {
+          path:'publishedSurvey',
+          element: <StatusSurvey></StatusSurvey>
         },
         // User 
         {
