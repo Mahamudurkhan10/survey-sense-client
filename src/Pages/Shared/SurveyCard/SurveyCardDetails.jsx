@@ -94,7 +94,7 @@ const SurveyCardDetails = () => {
                               .then(res =>{
                                    if(res.data.insertedId){
                                         Swal.fire({
-                                             position: "top-center",
+                                             position: "top-end",
                                              icon: "success",
                                              title: `survey Vote is done `,
                                              showConfirmButton: false,

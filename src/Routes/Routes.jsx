@@ -17,6 +17,7 @@ import Login from "../Pages/Home/Login/Login";
 import SingUp from "../Pages/Home/SinUp/SingUp";
 import AllUsers from "../Pages/DashBorad/Admin/AllUsers";
 import Report from "../Pages/DashBorad/User/Report";
+import ResponseDetails from "../Pages/DashBorad/Surveyor/ResponseDetails";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -72,6 +73,10 @@ import Report from "../Pages/DashBorad/User/Report";
           path:'update/:id',
           element: <Update></Update>,
           loader:({params})=> fetch(`http://localhost:5000/survey/${params.id}`)
+        },
+        {
+          path:'responseDetails/:id',
+          element: <ResponseDetails></ResponseDetails>
         },
         // Admin
         {
