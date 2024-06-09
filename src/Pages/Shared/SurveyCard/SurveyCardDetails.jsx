@@ -1,4 +1,4 @@
-import { FaThumbsUp } from "react-icons/fa";
+import { FaComment, FaThumbsUp } from "react-icons/fa";
 import { MdReportProblem } from "react-icons/md";
 import { useLoaderData  } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
@@ -15,7 +15,6 @@ const SurveyCardDetails = () => {
      const { user } = useAuth();
      const axiosPublic = useAxiosPublic();
      const [reportDisable, setReportDisable] = useState(true)
-  
      const voteModalRef = useRef(null); 
      const { title,
           _id,
@@ -32,6 +31,7 @@ const SurveyCardDetails = () => {
                     setSurvey(res.data)
                })
      }
+
      const email = user?.email;
      const name = user?.displayName;
      const resId = _id;
@@ -39,7 +39,7 @@ const SurveyCardDetails = () => {
      const handleVoteForm = (e) => {
           e.preventDefault()
           const newVote = e.target.vote.value;
-
+      
           if (newVote === 'yes') {
                const yes = yesVote + 1;
                const vote = yes + noVote;
@@ -56,19 +56,20 @@ const SurveyCardDetails = () => {
                                    showConfirmButton: false,
                                    timer: 1500
                               });
+                          
                               voteModalRef.current.close();
-                              
                               
                               axiosPublic.post(`/response`,response)
                               .then(res =>{
                                    if(res.data.insertedId){
                                         Swal.fire({
-                                             position: "top-center",
+                                             position: "top-start",
                                              icon: "success",
                                              title: `survey Vote is done `,
                                              showConfirmButton: false,
                                              timer: 1500
                                         });
+                                        
                                    }
                               })
                          }
@@ -100,12 +101,17 @@ const SurveyCardDetails = () => {
                                              showConfirmButton: false,
                                              timer: 1500
                                         });
+                                      
                                    }
                               })
                          }
                     })
           }
      }
+     // const handleCommentForm = (e) =>{
+     //      e.preventDefault()
+         
+     // }
      const handleReportFrom = (e) => {
           e.preventDefault()
           const reportData = e.target.report.value;
@@ -221,16 +227,37 @@ const SurveyCardDetails = () => {
                                         </div>
                                    </dialog>
                               </>
-
-
-                              <div
+                              <> <button className="" onClick={() => document.getElementById('my_modal_7').showModal()}>    <div
                                    className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
                                    aria-hidden="true"
                               >
-                                   <h1 className="flex items-center gap-2">  <FaThumbsUp className="text-xl "></FaThumbsUp> <span className="text-green-900 font-bold">{vote}</span> </h1>
+                                   <h1 className="flex items-center gap-2">  <FaComment className="text-xl "></FaComment>  </h1>
 
 
-                              </div>
+                              </div></button>
+                                   <dialog id="my_modal_7"  className="modal modal-bottom sm:modal-middle">
+                                        <div className="modal-box">
+                                             <form  action="">
+                                                 
+                                                  <div>
+                                                  <label className="label" htmlFor=""> Comment Here </label>
+                                                  <textarea required name="comment" className="textarea textarea-accent" placeholder="type here reason"></textarea>
+                                                  </div>
+
+                                                  <input  className="btn mt-3  btn-success btn-outline" type="submit" value="Submit" />
+                                             </form>
+                                             <div className="modal-action">
+                                                  <form method="dialog">
+                                                       {/* if there is a button in form, it will close the modal */}
+                                                       <button className="btn">Close</button>
+                                                  </form>
+                                             </div>
+                                        </div>
+                                   </dialog>
+                              </>
+
+                              
+                            
                               {
                                    reportDisable ? <> <button className="" onClick={() => document.getElementById('my_modal_6').showModal()}>  <div
                                         className="hidden btn  bg-orange-300 sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"

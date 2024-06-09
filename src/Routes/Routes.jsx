@@ -19,6 +19,7 @@ import AllUsers from "../Pages/DashBorad/Admin/AllUsers";
 import Report from "../Pages/DashBorad/User/Report";
 import ResponseDetails from "../Pages/DashBorad/Surveyor/ResponseDetails";
 import StatusSurvey from "../Pages/DashBorad/Admin/StatusSurvey";
+import ResponseSurvey from "../Pages/DashBorad/Admin/ResponseSurvey";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -93,6 +94,10 @@ import StatusSurvey from "../Pages/DashBorad/Admin/StatusSurvey";
         {
           path:'userReport',
           element: <Report></Report>
+        },
+        {
+          path:'responseSurvey',
+          element: <ResponseSurvey></ResponseSurvey>
         }
       ]
      }
