@@ -76,7 +76,8 @@ import ResponseDetails from "../Pages/DashBorad/Surveyor/ResponseDetails";
         },
         {
           path:'responseDetails/:id',
-          element: <ResponseDetails></ResponseDetails>
+          element: <ResponseDetails></ResponseDetails>,
+          loader:({params}) => fetch(`http://localhost:5000/responseOne/${params.id}`)
         },
         // Admin
         {
