@@ -23,6 +23,7 @@ import ResponseSurvey from "../Pages/DashBorad/Admin/ResponseSurvey";
 import ParticipateSurvey from "../Pages/DashBorad/User/ParticipateSurvey";
 import Pricing from "../Pages/Pricing/Pricing";
 import Payment from "../Pages/Pricing/Payment";
+import Comments from "../Pages/DashBorad/User/Comments";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -113,6 +114,10 @@ import Payment from "../Pages/Pricing/Payment";
         {
           path: 'participateSurvey',
           element: <ParticipateSurvey> </ParticipateSurvey>
+        },
+        {
+          path: 'proUser',
+          element: <Comments></Comments>
         }
         
       ]

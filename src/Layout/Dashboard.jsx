@@ -43,13 +43,16 @@ const Dashboard = () => {
                               <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/surveyResponse"> <FaList /> Survey Response </NavLink> </li>
                          </>
                     );
-               case 'proUser':
-                    return <li> ProUser Home </li>;
+
                default:
                     return <>
                          <li className="text-center text-2xl text-blue-900 font-bold"> User Dashboard </li>
                          <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/userReport"> <MdReportProblem /> User Report </NavLink> </li>
+
                          <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/participateSurvey"> <MdReportProblem /> Participate Surveys </NavLink> </li>
+                         {validUser?.role === 'proUser' && (
+                              <li><NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/proUser"><MdReportProblem /> Comments </NavLink></li>
+                         )}
                     </>;
           }
      };

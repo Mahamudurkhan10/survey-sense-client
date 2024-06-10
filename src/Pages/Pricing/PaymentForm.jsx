@@ -84,7 +84,7 @@ const PaymentForm = () => {
                               timer: 1500
                          }); 
                          const role = 'proUser'
-                         axiosPublic.patch('/userUpdate',{role})
+                         axiosPublic.patch(`/userRoleUpdate/${user?.email}`,{role})
                          .then(res =>{
                               if(res.data.modifiedCount){
                                    Swal.fire({

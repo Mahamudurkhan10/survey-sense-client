@@ -1,6 +1,6 @@
 import { FaComment, FaThumbsUp } from "react-icons/fa";
 import { MdReportProblem } from "react-icons/md";
-import { useLoaderData  } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -15,7 +15,7 @@ const SurveyCardDetails = () => {
      const { user } = useAuth();
      const axiosPublic = useAxiosPublic();
      const [reportDisable, setReportDisable] = useState(true)
-     const voteModalRef = useRef(null); 
+     const voteModalRef = useRef(null);
      const { title,
           _id,
           description,
@@ -35,11 +35,11 @@ const SurveyCardDetails = () => {
      const email = user?.email;
      const name = user?.displayName;
      const resId = _id;
-     const response = {email,name,resId,title,category,vote,deadline_date,timestamp,yesVote,noVote,options,status}
+     const response = { email, name, resId, title, category, vote, deadline_date, timestamp, yesVote, noVote, options, status }
      const handleVoteForm = (e) => {
           e.preventDefault()
           const newVote = e.target.vote.value;
-      
+
           if (newVote === 'yes') {
                const yes = yesVote + 1;
                const vote = yes + noVote;
@@ -56,22 +56,22 @@ const SurveyCardDetails = () => {
                                    showConfirmButton: false,
                                    timer: 1500
                               });
-                          
+
                               voteModalRef.current.close();
-                              
-                              axiosPublic.post(`/response`,response)
-                              .then(res =>{
-                                   if(res.data.insertedId){
-                                        Swal.fire({
-                                             position: "top-start",
-                                             icon: "success",
-                                             title: `survey Vote is done `,
-                                             showConfirmButton: false,
-                                             timer: 1500
-                                        });
-                                        
-                                   }
-                              })
+
+                              axiosPublic.post(`/response`, response)
+                                   .then(res => {
+                                        if (res.data.insertedId) {
+                                             Swal.fire({
+                                                  position: "top-start",
+                                                  icon: "success",
+                                                  title: `survey Vote is done `,
+                                                  showConfirmButton: false,
+                                                  timer: 1500
+                                             });
+
+                                        }
+                                   })
                          }
                     })
           }
@@ -91,27 +91,38 @@ const SurveyCardDetails = () => {
                                    timer: 1500
                               });
                               voteModalRef.current.close();
-                              axiosPublic.post(`/response`,response)
-                              .then(res =>{
-                                   if(res.data.insertedId){
-                                        Swal.fire({
-                                             position: "top-end",
-                                             icon: "success",
-                                             title: `survey Vote is done `,
-                                             showConfirmButton: false,
-                                             timer: 1500
-                                        });
-                                      
-                                   }
-                              })
+                              axiosPublic.post(`/response`, response)
+                                   .then(res => {
+                                        if (res.data.insertedId) {
+                                             Swal.fire({
+                                                  position: "top-end",
+                                                  icon: "success",
+                                                  title: `survey Vote is done `,
+                                                  showConfirmButton: false,
+                                                  timer: 1500
+                                             });
+
+                                        }
+                                   })
                          }
                     })
           }
      }
-     // const handleCommentForm = (e) =>{
-     //      e.preventDefault()
-         
-     // }
+     const handleComment = (e) => {
+          e.preventDefault()
+          const comment = e.target.comment.value;
+          const commentField = { comment, email, name, resId, title, category, status, deadline_date, vote }
+          const res = axiosPublic.post('/comments', commentField)
+          if (res.data.insertedId) {
+               Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: " Comment is done ",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+          }
+     }
      const handleReportFrom = (e) => {
           e.preventDefault()
           const reportData = e.target.report.value;
@@ -216,7 +227,7 @@ const SurveyCardDetails = () => {
                                                        <input type="radio" name="vote" id="" value={'no'} /> No
                                                   </div>
 
-                                                  <input  className="btn  btn-success btn-outline" type="submit" value="Submit" />
+                                                  <input className="btn  btn-success btn-outline" type="submit" value="Submit" />
                                              </form>
                                              <div className="modal-action">
                                                   <form method="dialog">
@@ -235,16 +246,16 @@ const SurveyCardDetails = () => {
 
 
                               </div></button>
-                                   <dialog id="my_modal_7"  className="modal modal-bottom sm:modal-middle">
+                                   <dialog id="my_modal_7" className="modal modal-bottom sm:modal-middle">
                                         <div className="modal-box">
-                                             <form  action="">
-                                                 
+                                             <form onSubmit={handleComment} action="">
+
                                                   <div>
-                                                  <label className="label" htmlFor=""> Comment Here </label>
-                                                  <textarea required name="comment" className="textarea textarea-accent" placeholder="type here reason"></textarea>
+                                                       <label className="label" htmlFor=""> Comment Here </label>
+                                                       <textarea required name="comment" className="textarea textarea-accent" placeholder="type here reason"></textarea>
                                                   </div>
 
-                                                  <input  className="btn mt-3  btn-success btn-outline" type="submit" value="Submit" />
+                                                  <input className="btn mt-3  btn-success btn-outline" type="submit" value="Submit" />
                                              </form>
                                              <div className="modal-action">
                                                   <form method="dialog">
@@ -256,8 +267,8 @@ const SurveyCardDetails = () => {
                                    </dialog>
                               </>
 
-                              
-                            
+
+
                               {
                                    reportDisable ? <> <button className="" onClick={() => document.getElementById('my_modal_6').showModal()}>  <div
                                         className="hidden btn  bg-orange-300 sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
