@@ -41,6 +41,7 @@ const Dashboard = () => {
                               <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/createSurvey"> <FcSurvey /> Create Survey </NavLink> </li>
                               <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/allSurvey"> <RiArrowUpDownFill /> Update Survey </NavLink> </li>
                               <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/surveyResponse"> <FaList /> Survey Response </NavLink> </li>
+                              <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/feedBack"> <FaList /> FeedBack </NavLink> </li>
                          </>
                     );
 

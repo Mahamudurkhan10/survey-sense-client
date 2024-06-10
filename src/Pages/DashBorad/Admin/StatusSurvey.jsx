@@ -1,15 +1,15 @@
-import { NavLink } from "react-router-dom";
+
 import useSurveys from "../../../Hooks/useSurveys";
 import { FaThumbsUp } from "react-icons/fa";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-import { useRef } from "react";
+
 
 
 const StatusSurvey = () => {
      const [surveys] = useSurveys();
      const axiosPublic = useAxiosPublic()
-     const feedRef = useRef(null)
+     
      const handleFeedBack = (e,survey) =>{
           e.preventDefault()
 
@@ -20,7 +20,7 @@ const StatusSurvey = () => {
           const createTime = survey.timestamp;
           const status = survey.status;
           const mainFeedBack = { feedback,newId,title,category,createTime,status }
-           axiosPublic.push(`/feedback`,mainFeedBack)
+           axiosPublic.post(`/feedback`,mainFeedBack)
            .then(res =>{
                if(res.data.insertedId){
                     Swal.fire({
@@ -31,7 +31,7 @@ const StatusSurvey = () => {
                          timer: 1500
                     });
                     e.target.reset();
-                    feedRef.current.close();
+                   
                }
            })
      }
@@ -67,15 +67,16 @@ const StatusSurvey = () => {
                                         <td className="flex items-center justify-center"> <FaThumbsUp></FaThumbsUp> {survey.vote} </td>
 
                                         <td> {survey.timestamp.toString().split("T")[0]} </td>
-                                        <td> {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                             <button className="btn btn-info" onClick={() => document.getElementById('my_modal_5').showModal()}> FeedBack</button>
-                                             <dialog ref={feedRef} id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                                         <td> {
+                                              survey.status ==='publish'? <></>:<>
+                                              <button className="btn btn-info" onClick={() => document.getElementById('my_modal_5').showModal()}> FeedBack</button>
+                                             <dialog  id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                                                   <div className="modal-box">
                                                        <form onSubmit={(e)=> handleFeedBack(e,survey)} action="">
 
                                                             <div>
-                                                                 <label className="label" htmlFor=""> Comment Here </label>
-                                                                 <textarea required name="feedback" className="textarea textarea-accent" placeholder="type here reason"></textarea>
+                                                                 <label className="label" htmlFor=""> FeedBack </label>
+                                                                 <textarea required name="feedback" className="textarea textarea-accent" placeholder="type here "></textarea>
                                                             </div>
 
                                                             <input className="btn mt-3  btn-success btn-outline" type="submit" value="Submit" />
@@ -87,7 +88,11 @@ const StatusSurvey = () => {
                                                             </form>
                                                        </div>
                                                   </div>
-                                             </dialog> </td>
+                                             </dialog>
+                                             </>
+                                             } </td>
+                                       
+                                             
                                    </tr>
                               </>)}
 

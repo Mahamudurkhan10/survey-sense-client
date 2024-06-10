@@ -25,6 +25,7 @@ import Pricing from "../Pages/Pricing/Pricing";
 import Payment from "../Pages/Pricing/Payment";
 import Comments from "../Pages/DashBorad/User/Comments";
 import SurveyorChart from "../Pages/DashBorad/Surveyor/SurveyorChart";
+import FeedBack from "../Pages/DashBorad/Surveyor/FeedBack";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -93,6 +94,10 @@ import SurveyorChart from "../Pages/DashBorad/Surveyor/SurveyorChart";
           path:'responseDetails/:id',
           element: <ResponseDetails></ResponseDetails>,
           loader:({params}) => fetch(`http://localhost:5000/responseOne/${params.id}`)
+        },
+        {
+          path:'feedBack',
+          element: <FeedBack></FeedBack>
         },
         // Admin
         {
