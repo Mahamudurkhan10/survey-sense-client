@@ -21,6 +21,8 @@ import ResponseDetails from "../Pages/DashBorad/Surveyor/ResponseDetails";
 import StatusSurvey from "../Pages/DashBorad/Admin/StatusSurvey";
 import ResponseSurvey from "../Pages/DashBorad/Admin/ResponseSurvey";
 import ParticipateSurvey from "../Pages/DashBorad/User/ParticipateSurvey";
+import Pricing from "../Pages/Pricing/Pricing";
+import Payment from "../Pages/Pricing/Payment";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -47,6 +49,14 @@ import ParticipateSurvey from "../Pages/DashBorad/User/ParticipateSurvey";
         {
           path:'/singUp',
           element: <SingUp></SingUp>
+        },
+        {
+          path:'pricing',
+          element: <Pricing></Pricing>
+        },
+        {
+          path:'payment',
+          element: <Payment></Payment>
         }
        ]
      },
