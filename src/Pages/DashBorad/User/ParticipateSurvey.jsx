@@ -20,6 +20,11 @@ const ParticipateSurvey = () => {
     
      return (
           <div>
+                
+                <div className="text-center">
+                    <h1 className="text-3xl font-bold text-green-600 mb-5"> Participate  Surveys </h1>
+               </div>
+               
                <div className="overflow-x-auto">
                     <table className="table w-5/6  mx-auto">
                          {/* head */}

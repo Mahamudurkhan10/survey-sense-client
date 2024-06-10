@@ -9,16 +9,19 @@ import { useRef, useState } from "react";
 
 
 
+
 const SurveyCardDetails = () => {
      const surveyLoaded = useLoaderData();
+   
      const [survey, setSurvey] = useState(surveyLoaded);
      const { user } = useAuth();
      const axiosPublic = useAxiosPublic();
      const [reportDisable, setReportDisable] = useState(true)
      const voteModalRef = useRef(null);
+     const commentModalRef = useRef(null);
      const { title,
           _id,
-          description,
+          description, 
           category,
           deadline_date,
           options,
@@ -47,7 +50,7 @@ const SurveyCardDetails = () => {
                const voteUpdate = { yes, vote }
                axiosPublic.patch(`/yesVoteUpdate/${_id}`, voteUpdate)
                     .then(res => {
-                         if (res.data.modifiedCount) {
+                         if (res.data.modifiedCount >0) {
                               fetchData()
                               Swal.fire({
                                    position: "top-end",
@@ -81,7 +84,7 @@ const SurveyCardDetails = () => {
                const voteUpdate = { no, vote }
                axiosPublic.patch(`/noVoteUpdate/${_id}`, voteUpdate)
                     .then(res => {
-                         if (res.data.modifiedCount) {
+                         if (res.data.modifiedCount >0) {
                               fetchData()
                               Swal.fire({
                                    position: "top-start",
@@ -110,18 +113,27 @@ const SurveyCardDetails = () => {
      }
      const handleComment = (e) => {
           e.preventDefault()
+         
           const comment = e.target.comment.value;
+         
           const commentField = { comment, email, name, resId, title, category, status, deadline_date, vote }
-          const res = axiosPublic.post('/comments', commentField)
-          if (res.data.insertedId) {
-               Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: " Comment is done ",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-          }
+           axiosPublic.post('/comments', commentField)
+           .then(res => {
+               if(res.data.insertedId){
+                 
+                   
+                    Swal.fire({
+                         position: "top-end",
+                         icon: "success",
+                         title: "Your work has been saved",
+                         showConfirmButton: false,
+                         timer: 1500
+                       });
+                       e.target.reset();
+                       commentModalRef.current.close();
+               }
+           })
+         
      }
      const handleReportFrom = (e) => {
           e.preventDefault()
@@ -242,11 +254,11 @@ const SurveyCardDetails = () => {
                                    className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
                                    aria-hidden="true"
                               >
-                                   <h1 className="flex items-center gap-2">  <FaComment className="text-xl "></FaComment>  </h1>
+                                   <h1 className="flex items-center gap-2">  <FaComment className="text-xl "></FaComment>   </h1>
 
 
                               </div></button>
-                                   <dialog id="my_modal_7" className="modal modal-bottom sm:modal-middle">
+                                   <dialog id="my_modal_7" ref={commentModalRef} className="modal modal-bottom sm:modal-middle">
                                         <div className="modal-box">
                                              <form onSubmit={handleComment} action="">
 

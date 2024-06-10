@@ -86,7 +86,7 @@ const PaymentForm = () => {
                          const role = 'proUser'
                          axiosPublic.patch(`/userRoleUpdate/${user?.email}`,{role})
                          .then(res =>{
-                              if(res.data.modifiedCount){
+                              if(res.data.modifiedCount >0){
                                    Swal.fire({
                                         position: "top-start",
                                         icon: "success",

@@ -1,4 +1,4 @@
-import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaUsers, FaUtensils } from "react-icons/fa";
+import { FaAd, FaBook, FaCalendar, FaChartBar, FaEnvelope, FaHome, FaList, FaSearch, FaUsers, FaUtensils } from "react-icons/fa";
 import { FcSurvey } from "react-icons/fc";
 
 import { RiArrowUpDownFill } from "react-icons/ri";
@@ -27,7 +27,7 @@ const Dashboard = () => {
                case 'admin':
                     return (
                          <>
-                              <li> <NavLink to="/dashboard/adminHome"> <FaHome /> Admin Home </NavLink> </li>
+                              
                               <li> <NavLink to="/dashboard/allUsers"> <FaUsers /> All Users </NavLink> </li>
                               <li> <NavLink to="/dashboard/publishedSurvey"> <FaUsers /> Publish-UnPublish </NavLink> </li>
                               <li> <NavLink to="/dashboard/responseSurvey"> <FaUsers /> Responses Survey </NavLink> </li>
@@ -36,8 +36,8 @@ const Dashboard = () => {
                case 'surveyor':
                     return (
                          <>
-                              <li className="text-center text-2xl text-blue-900 font-bold"> Surveyor </li>
-                              <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/surveyorHome"> <FaHome /> Surveyor Home </NavLink> </li>
+                              <li className="text-center text-2xl text-blue-900 font-bold"> Surveyor Home </li>
+                              <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/surveyorChart"> <FaChartBar /> SurveyChart </NavLink> </li>
                               <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/createSurvey"> <FcSurvey /> Create Survey </NavLink> </li>
                               <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/allSurvey"> <RiArrowUpDownFill /> Update Survey </NavLink> </li>
                               <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/surveyResponse"> <FaList /> Survey Response </NavLink> </li>

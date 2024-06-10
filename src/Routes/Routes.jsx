@@ -8,7 +8,7 @@ import Dashboard from "../Layout/Dashboard";
 
 import SurveyCardDetails from "../Pages/Shared/SurveyCard/SurveyCardDetails";
 import Survey from "../Pages/Survey/Survey";
-import SurveyorHome from "../Pages/DashBorad/Surveyor/SurveyorHome";
+import SurveyorHome from "../Pages/DashBorad/Surveyor/SurveyorChart";
 import CreateSurvey from "../Pages/DashBorad/Surveyor/CreateSurvey";
 import AllSurvey from "../Pages/DashBorad/Surveyor/AllSurvey";
 import SurveyResponse from "../Pages/DashBorad/Surveyor/SurveyResponse";
@@ -24,6 +24,7 @@ import ParticipateSurvey from "../Pages/DashBorad/User/ParticipateSurvey";
 import Pricing from "../Pages/Pricing/Pricing";
 import Payment from "../Pages/Pricing/Payment";
 import Comments from "../Pages/DashBorad/User/Comments";
+import SurveyorChart from "../Pages/DashBorad/Surveyor/SurveyorChart";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -67,8 +68,8 @@ import Comments from "../Pages/DashBorad/User/Comments";
       children:[
         // Surveyor
         {
-          path:'surveyorHome',
-          element: <SurveyorHome></SurveyorHome>
+          path:'surveyorChart',
+          element:<SurveyorChart></SurveyorChart>
         },
         {
           path:'createSurvey',

@@ -1,5 +1,5 @@
 import { FaThumbsUp } from "react-icons/fa";
-import { MdWhereToVote } from "react-icons/md";
+
 import { NavLink } from "react-router-dom";
 
 

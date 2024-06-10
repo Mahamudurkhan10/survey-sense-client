@@ -18,7 +18,7 @@ const SurveyCard = ({ survey }) => {
 
 
                <article
-                    className=" h-[310px] bg-gray-100  rounded-xl  shadow-sm hover:shadow-2xl "
+                    className=" bg-gray-100  rounded-xl  shadow-sm hover:shadow-2xl "
                >
                     <div className="rounded-[10px] flex p-4 !pt-05 sm:p-6">
                          <div>
@@ -37,7 +37,7 @@ const SurveyCard = ({ survey }) => {
                                    <span
                                         className="whitespace-nowrap font-bold  rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
                                    >
-                                        Creation date : {timestamp.toString().split('T')[0]}
+                                        Creation date : {timestamp}
                                    </span>
 
                                    <span

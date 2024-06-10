@@ -38,7 +38,7 @@ const AllSurvey = () => {
                                         <td> {survey.status} </td>
                                         <td className="flex items-center justify-center"> <FaThumbsUp></FaThumbsUp> {survey.vote} </td>
                                         <td> {survey.deadline_date} </td>
-                                        <td> {survey.timestamp.toString().split("T")[0]} </td>
+                                        <td> {survey.timestamp} </td>
                                         <td> <NavLink to={`/dashboard/update/${survey._id}`} className="flex items-center"> <button className="btn btn-error"> <MdUpdate></MdUpdate> Update </button> </NavLink> </td>
                                    </tr>
                               </>)}
