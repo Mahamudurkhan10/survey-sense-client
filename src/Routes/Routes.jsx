@@ -20,6 +20,7 @@ import Report from "../Pages/DashBorad/User/Report";
 import ResponseDetails from "../Pages/DashBorad/Surveyor/ResponseDetails";
 import StatusSurvey from "../Pages/DashBorad/Admin/StatusSurvey";
 import ResponseSurvey from "../Pages/DashBorad/Admin/ResponseSurvey";
+import ParticipateSurvey from "../Pages/DashBorad/User/ParticipateSurvey";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -90,15 +91,20 @@ import ResponseSurvey from "../Pages/DashBorad/Admin/ResponseSurvey";
           path:'publishedSurvey',
           element: <StatusSurvey></StatusSurvey>
         },
+        {
+          path:'responseSurvey',
+          element: <ResponseSurvey></ResponseSurvey>
+        },
         // User 
         {
           path:'userReport',
           element: <Report></Report>
         },
         {
-          path:'responseSurvey',
-          element: <ResponseSurvey></ResponseSurvey>
+          path: 'participateSurvey',
+          element: <ParticipateSurvey> </ParticipateSurvey>
         }
+        
       ]
      }
    ]);

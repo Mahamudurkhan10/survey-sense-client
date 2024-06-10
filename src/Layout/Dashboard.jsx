@@ -49,6 +49,7 @@ const Dashboard = () => {
                     return <>
                          <li className="text-center text-2xl text-blue-900 font-bold"> User Dashboard </li>
                          <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/userReport"> <MdReportProblem /> User Report </NavLink> </li>
+                         <li> <NavLink className="text-yellow-700 text-lg font-semibold" to="/dashboard/participateSurvey"> <MdReportProblem /> Participate Surveys </NavLink> </li>
                     </>;
           }
      };
