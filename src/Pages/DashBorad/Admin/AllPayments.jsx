@@ -14,7 +14,7 @@ const AllPayments = () => {
      return (
           <div>
 
-               <div className="overflow-x-auto">
+               <div className="overflow-x-auto ml-6">
                      <div className="text-center mt-5 mb-5">
                          <h1 className="text-4xl font-semibold text-orange-400 uppercase"> Here All <span className="text-yellow-800">Payments</span> </h1>
                      </div>

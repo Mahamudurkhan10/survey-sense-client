@@ -1,34 +1,79 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from "@tanstack/react-query";
-
+import axios from 'axios'; // Axios for HTTP requests
 import { FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { FaDeleteLeft } from 'react-icons/fa6';
+import { MdDelete } from 'react-icons/md';
 
 const AllUsers = () => {
+  const axiosSecure = useAxiosSecure();
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [users, setUsers] = useState([]);
 
-  const axiosSecure = useAxiosSecure()
-  const [selectedUser, setSelectedUser] = useState(null); 
-
-  const { refetch, data: users = [] } = useQuery({
-    queryKey: ['users'],
+  // Fetch users data
+  const { refetch, data: oldUsers = [] } = useQuery({
+    queryKey: ['oldUsers'],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users`);
       return res.data;
     }
   });
 
+  useEffect(() => {
+    setUsers(oldUsers);
+  }, [oldUsers]);
+
+  const handleFilter = (filter) => {
+     if(filter ==='All'){
+      setUsers(oldUsers)
+     }
+     else {
+      const roleFilter = oldUsers.filter(user => user.role === filter);
+      setUsers(roleFilter);
+    }
+  };
+
+  const handleDelete = (_id) => {
+    Swal.fire({
+         title: "Are you sure?",
+         text: "You won't be able to revert this!",
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#3085d6",
+         cancelButtonColor: "#d33",
+         confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+         if (result.isConfirmed) {
+              axiosSecure.delete(`/users/${_id}`)
+                   .then(res => {
+                        if (res.data.deletedCount > 0) {
+                             refetch()
+                             Swal.fire({
+                                  title: "Deleted!",
+                                  text: "Your file has been deleted.",
+                                  icon: "success"
+                             });
+                        }
+                        
+                   })
+
+         }
+    });
+}  
+
   const handleMakeUser = (e) => {
     e.preventDefault();
     const role = e.target.role.value;
-    const userId = selectedUser?._id; 
+    const userId = selectedUser?._id;
     if (!userId) return;
 
     axiosSecure.patch(`/users/admin/${userId}`, { role })
       .then(res => {
         if (res.data.modifiedCount > 0) {
           refetch();
-          setSelectedUser(null); 
+          setSelectedUser(null);
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -42,42 +87,57 @@ const AllUsers = () => {
 
   return (
     <div>
-      <div className="flex justify-evenly my-4">
+      <div className="flex justify-evenly text-yellow-700 font-bold my-4">
         <h2 className="text-3xl">All Users</h2>
         <h2 className="text-3xl">Total Users: {users.length}</h2>
       </div>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra w-full">
-          <thead>
+      <div className='text-center mt-3 mb-9'>
+        <div className="dropdown dropdown-right">
+          <div onClick={()=> handleFilter('All')} tabIndex={0} role="button" className="btn text-white btn-success px-7 m-1">See User</div>
+          <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+            <li onClick={() => handleFilter('admin')}><a>Admin</a></li>
+            <li onClick={() => handleFilter('surveyor')}><a>Surveyor</a></li>
+            <li onClick={() => handleFilter('user')}><a>User</a></li>
+            <li onClick={() => handleFilter('proUser')}><a>Pro User</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div className="overflow-x-auto w-4/5 mx-auto">
+        <table className="table w-full">
+          <thead className='text-xl font-semibold bg-slate-400 text-white'>
             <tr>
-              <th></th>
+              <th>#</th>
               <th>Name</th>
               <th>Email</th>
-              <th> Current role </th>
-              <th> Make Role</th>
+              <th>Current Role</th>
+              <th>Make Role</th>
+              <th>Delete</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className='text-sm font-medium'>
             {users.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td> {user.role} </td>
-              
+                <td>{user.role}</td>
                 <td>
                   {user.role === 'admin' || user.role === 'surveyor' ? (
-                    <button  onClick={() => setSelectedUser(user)} className='btn text-blue-600 btn-ghost'>{user.role}</button>
+                    <button onClick={() => setSelectedUser(user)} className='btn text-blue-600 btn-ghost'>{user.role}</button>
                   ) : (
-                    <>
-                      <button
-                        className="btn bg-yellow-400 btn-xs text-white font-bold text-lg"
-                        onClick={() => setSelectedUser(user)}
-                      >
-                        <FaUsers className="text-2xl" />
-                      </button>
-                    </>
+                    <button
+                      className="btn bg-yellow-400 btn-xs text-white font-bold text-lg"
+                      onClick={() => setSelectedUser(user)}
+                    >
+                      <FaUsers className="text-2xl" />
+                    </button>
                   )}
+                </td>
+                <td>
+                  <button onClick={()=>handleDelete(user._id)} className="btn bg-red-500 btn-xs text-white font-bold text-lg">
+                    <MdDelete />
+                  </button>
                 </td>
               </tr>
             ))}

@@ -1,9 +1,10 @@
+import { BiUpvote } from "react-icons/bi";
 import { FaThumbsUp } from "react-icons/fa";
 
 import { NavLink } from "react-router-dom";
 
 
-const MostSurveyCard = ({survey}) => {
+const  MostSurveyCard = ({survey}) => {
      const { title,
           _id,
           description,
@@ -14,23 +15,23 @@ const MostSurveyCard = ({survey}) => {
           timestamp,
           vote } = survey;
      return (
-          <div className="mt-7 mb-5">
-               <article className="rounded-xl  h-[340px] bg-blue-50 p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
-                    <div className="flex items-start  sm:gap-8">
+          <div className="mt-7 mb-5 p-4 lg:p-0">
+               <article className="rounded-xl  lg:h-[320px]  bg-blue-50 p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
+                    <div className="flex lg:items-start  flex-row-reverse lg:flex-row sm:gap-8">
                    
-                    <NavLink to={`/surveyDetails/${_id}`}>
+                    <NavLink  to={`/surveyDetails/${_id}`}>
                     <div
-                              className="hidden btn sm:grid sm:size-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
+                              className=" btn grid size-20 shrink-0 place-content-center rounded-full border-2 border-indigo-500"
                               aria-hidden="true"
-                         >
-                                   <h1 className="flex items-center gap-2">  <FaThumbsUp className="text-xl text-blue-600"></FaThumbsUp> <span className="text-orange-400 font-bold">{vote}</span> </h1>
+                         >          <h1 className="text-amber-700 text-sm font-bold"> vote</h1>
+                                   <h1 className="flex items-center gap-2">  <BiUpvote className="text-xl text-blue-600"></BiUpvote> <span className="text-orange-400 font-bold">{vote}</span> </h1>
                            
 
                          </div>
                    
                     </NavLink>
 
-                         <div>
+                         <div className="">
                               <strong
                                    className="rounded border border-indigo-500 bg-indigo-500 px-3 py-1.5 text-[10px] font-medium text-white"
                               >
@@ -67,7 +68,7 @@ const MostSurveyCard = ({survey}) => {
 
                               </div>
                               <div className="divider divider-success"></div>
-                              <div className="flex gap-2 text-lg font-bold"> 
+                              <div className="flex gap-2 lg:flex-row text-lg font-bold"> 
                                    <h1 > Category : <span className="text-xs font-medium text-yellow-700">{category}</span> </h1>
                                    <h1> Title : <span className="text-xs font-medium text-blue-500">{title}</span></h1>
                               </div>

@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import SurveyTab from "./SurveyTab";
 import 'react-tabs/style/react-tabs.css';
+import { TbUTurnLeft } from "react-icons/tb";
 
 const Survey = () => {
+     const [asc,setAsc] = useState(true)
      const categories = ['Employee Engagement', 'Customer Satisfaction', 'Product Feedback', 'Training and Development', 'Health and Wellness', 'Work-Life Balance']
-     const { category } = useParams();
+     const { category } = useParams(asc);
      const initialIndex = categories.indexOf(category)
      const [tabIndex, setTabIndex] = useState(initialIndex)
      const [survey] = useSurveys()
@@ -43,6 +45,11 @@ const Survey = () => {
 
 
                <div >
+                    <div>
+                         <button className="btn btn-success" onClick={()=>setAsc(!asc)}> Vote:
+                              {asc?'high':'low'}
+                         </button>
+                    </div>
                     <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                          <TabList className={'grid grid-cols-2 lg:grid-cols-6 text-xs lg:text-sm gap-4 justify-between font-bold p-3 text-blue-500'}>
                               <Tab >Employee Engagement</Tab>

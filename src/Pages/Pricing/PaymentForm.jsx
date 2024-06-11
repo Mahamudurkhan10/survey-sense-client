@@ -101,8 +101,10 @@ const PaymentForm = () => {
           }
      }
      return (
-          <div className="pt-24">
-               <form className="ml-12" onSubmit={handleSubmit}>
+          <div className="pt-24   ">
+               <h1 className="text-4xl text-cyan-500 text-center mb-5"> Payment </h1>
+        <div className="lg:w-3/4 mx-auto card p-12 bg-slate-100">
+        <form className="ml-12 " onSubmit={handleSubmit}>
                <CardElement
                     options={{
                          style: {
@@ -125,6 +127,7 @@ const PaymentForm = () => {
                <p className="text-red-600"> {Error} </p>
                <p className="text-green-600"> {transitionId} </p>
           </form>
+        </div>
           </div>
      );
 };

@@ -27,6 +27,7 @@ import Comments from "../Pages/DashBorad/User/Comments";
 import SurveyorChart from "../Pages/DashBorad/Surveyor/SurveyorChart";
 import FeedBack from "../Pages/DashBorad/Surveyor/FeedBack";
 import AllPayments from "../Pages/DashBorad/Admin/AllPayments";
+import PrivateRoutes from "./PrivateRoutes";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -42,7 +43,7 @@ import AllPayments from "../Pages/DashBorad/Admin/AllPayments";
         },
         {
           path:'/surveyDetails/:id',
-          element: <SurveyCardDetails></SurveyCardDetails>,
+          element: <PrivateRoutes><SurveyCardDetails></SurveyCardDetails></PrivateRoutes>,
           loader: ({params})=> fetch(`http://localhost:5000/surveyDetail/${params.id}`)
         },
         {
@@ -56,7 +57,8 @@ import AllPayments from "../Pages/DashBorad/Admin/AllPayments";
         },
         {
           path:'pricing',
-          element: <Pricing></Pricing>
+          element: <PrivateRoutes><Pricing></Pricing></PrivateRoutes>,
+
         },
         {
           path:'payment',

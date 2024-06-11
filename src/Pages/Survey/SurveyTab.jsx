@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 
 const SurveyTab = ({ survey }) => {
+    
 console.log(survey);
      return (
           <div>

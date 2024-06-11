@@ -1,3 +1,4 @@
+import { BiUpvote } from "react-icons/bi";
 import { FaThumbsUp, FaVoteYea } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
@@ -14,7 +15,7 @@ const SurveyCard = ({ survey }) => {
           vote } = survey;
 
      return (
-          <div className="mt-6">
+          <div className="mt-6 p-3 lg:p-0">
 
 
                <article
@@ -49,7 +50,7 @@ const SurveyCard = ({ survey }) => {
                          </div>
 
                          <div className="p-4  flex gap-4 flex-col justify-between sm:p-4">
-                              <NavLink to={`/surveyDetails/${_id}`}> <h1 className="flex gap-2 rounded-full  items-center btn bg-slate-200"> <FaThumbsUp className="text-lg text-blue-600 "></FaThumbsUp> {vote} </h1></NavLink>
+                              <NavLink to={`/surveyDetails/${_id}`}> <h1 className="flex rounded-full btn-outline items-center btn bg-slate-200"> <BiUpvote className="text-sm  text-yellow-800 "></BiUpvote> {vote} </h1></NavLink>
                               <NavLink to={`/surveyDetails/${_id}`}><button className="btn  btn-outline w-full btn-info font-bold "> View Details </button></NavLink>
 
                          </div>
