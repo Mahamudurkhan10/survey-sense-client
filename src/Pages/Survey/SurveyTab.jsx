@@ -6,7 +6,7 @@ const SurveyTab = ({ survey }) => {
 console.log(survey);
      return (
           <div>
-               <h1 className="mb-5 text-center text-3xl font-bold text-green-700"> {survey.slice(0,1).map(c => <> {c.category} Surveys </>)} </h1>
+               <h1 className="mb-5 text-center text-2xl lg:text-3xl font-bold text-green-700"> {survey.slice(0,1).map(c => <> {c.category} Surveys </>)} </h1>
              <div className="grid  grid-cols-1 gap-7 lg:grid-cols-2">
                {survey.map(card => <div key={card._id}>
                     <article className="rounded-xl   bg-gray-200 p-4 ring ring-indigo-50 sm:p-6 lg:p-8">

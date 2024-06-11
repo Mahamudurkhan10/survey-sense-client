@@ -6,23 +6,23 @@ import { FaGoogle } from "react-icons/fa";
 
 const SocialLogin = () => {
      const { googleLogin } = useAuth()
-     // const axiosPublic = useAxiosPublic()
-     // const navigate = useNavigate()
+     const axiosPublic = useAxiosPublic()
+     const navigate = useNavigate()
      const handleGoogleLogin = () => {
           googleLogin()
-               // .then(result => {
-               //      console.log(result.user);
-               //      const userInfo = {
-               //           email: result.user?.email,
-               //           name: result.user?.displayName
+               .then(result => {
+                    console.log(result.user);
+                    const userInfo = {
+                         email: result.user?.email,
+                         name: result.user?.displayName
 
-               //      }
-               //      axiosPublic.post('/users', userInfo)
-               //           .then(res => {
-               //                console.log(res.data);
-               //                navigate('/')
-               //           })
-               // })
+                    }
+                    axiosPublic.post('/users', userInfo)
+                         .then(res => {
+                              console.log(res.data);
+                              navigate('/')
+                         })
+               })
      }
      return (
           <div>

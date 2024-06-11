@@ -1,10 +1,11 @@
 import { useLoaderData } from "react-router-dom";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const Update = () => {
-     const axiosPublic = useAxiosPublic()
+     const axiosSecure = useAxiosSecure();
      const {title,description,deadline_date,_id} =useLoaderData()
      const handleUpdateForm = (e)=>{
           e.preventDefault();
@@ -15,7 +16,7 @@ const Update = () => {
           const deadline_date = e.target.date.value;
           
           const surveyData = {title,description,category,deadline_date,options}
-          axiosPublic.patch(`/update/${_id}`,surveyData)
+          axiosSecure.patch(`/update/${_id}`,surveyData)
           .then(res =>{
                if(res.data.modifiedCount){
                     Swal.fire({

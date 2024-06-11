@@ -4,17 +4,18 @@ import { useState } from "react";
 import Chart from "../../Shared/Chart/Chart";
 import { FaThumbsUp } from "react-icons/fa6";
 import { FaThumbsDown } from "react-icons/fa";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 
 const SurveyorChart = () => {
      const [click, setClick] = useState(true)
-
-     const axiosPublic = useAxiosPublic()
+     const axiosSecure = useAxiosSecure();
+     
      const { data: surveys = [], isPending: loading, refetch } = useQuery({
           queryKey: ['surveys'],
           queryFn: async () => {
-               const res = await axiosPublic.get(`/totalVotesByCategory`)
+               const res = await axiosSecure.get(`/totalVotesByCategory`)
 
 
                return res.data;

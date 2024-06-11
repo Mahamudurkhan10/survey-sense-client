@@ -2,15 +2,16 @@ import { useLoaderData } from "react-router-dom";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { FaThumbsUp } from "react-icons/fa";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const ResponseDetails = () => {
      const responseOne = useLoaderData();
-     const axiosPublic = useAxiosPublic()
+     const axiosSecure = useAxiosSecure();
      const { data: voteResponses = [], isPending: loading, refetch } = useQuery({
           queryKey: ['voteResponses'],
           queryFn: async () => {
-               const res = await axiosPublic.get(`/response/${responseOne.resId}`)
+               const res = await axiosSecure.get(`/response/${responseOne.resId}`)
 
 
                return res.data;

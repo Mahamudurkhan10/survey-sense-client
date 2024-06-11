@@ -3,43 +3,53 @@ import useAuth from "../../../Hooks/useAuth";
 
 
 const Navbar = () => {
-     const {user,logOut} = useAuth()
-     const LogOut = ()=>{
+     const { user, logOut } = useAuth()
+     const LogOut = () => {
           logOut()
      }
      const navItem = <>
-       <li> <NavLink to={'/'}><a> Home</a></NavLink> </li>
-       <li> <NavLink to={'/survey/Employee Engagement'}><a> Survey </a></NavLink> </li>
-       <li> <NavLink to={'/pricing'}><a> Pricing </a></NavLink> </li>
+          <li> <NavLink to={'/'}><a> Home</a></NavLink> </li>
+          <li> <NavLink to={'/survey/Employee Engagement'}><a> Survey </a></NavLink> </li>
+          <li> <NavLink to={'/pricing'}><a> Pricing </a></NavLink> </li>
      </>
      const navItem2 = <>
-       
-       <li> <NavLink className={'btn btn-ghost'}  to={'/dashboard'}><a> Dashboard </a></NavLink> </li>
-       <li> <button onClick={logOut} className="btn btn-ghost">  <a> Logout </a></button> </li>
+
+          <li> <NavLink className={'btn btn-ghost'} to={'/dashboard'}><a> Dashboard </a></NavLink> </li>
+          <li> <button onClick={logOut} className="btn btn-ghost">  <a> Logout </a></button> </li>
      </>
      return (
           <div >
                <div className="navbar  bg-gray-900 text-lg font-semibold text-blue-300 opacity-90 max-w-screen-xl fixed z-10">
-                    <div className="flex-1">
-                         <NavLink to={'/'} className="btn btn-ghost text-xl"> Survey <span className="text-green-600 font-bold">Sense</span> </NavLink>
-                    </div>
-                    <div className="flex-1 justify-end">
-                         <div className="dropdown dropdown-end">
-                           <ul className="flex gap-12 mr-6">  {navItem}</ul>
-                             
+               <div className="navbar-start">
+                              <div className="dropdown">
+                                   <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                                   </div>
+                                   <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                      {navItem}
+                                   </ul>
+                              </div>
+                              <a className="btn btn-ghost text-xl text-green-400 ">Survey <span>Sense</span></a>
                          </div>
+                         <div className="navbar-center hidden lg:flex">
+                              <ul className="menu menu-horizontal px-1">
+                                  {navItem}
+                              </ul>
+                         </div>
+                    <div className="flex-1 justify-end">
+                        
                          <div className="dropdown dropdown-end">
                               {
-                                   user? <div><div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                   <div className="w-10 rounded-full">
-                                        <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                   user ? <div><div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                             <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                        </div>
                                    </div>
-                              </div>
-                              <ul tabIndex={0} className="menu space-y-3 text-black  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-300 rounded-box w-52">
-                                   
-                                       {navItem2}
-                              </ul> </div>
-                              : <NavLink to={'/login'}><button className="btn rounded-full btn-success uppercase text-white font-bold"> Join Us </button></NavLink>
+                                        <ul tabIndex={0} className="menu space-y-3 text-black  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-300 rounded-box w-52">
+
+                                             {navItem2}
+                                        </ul> </div>
+                                        : <NavLink to={'/login'}><button className="btn rounded-full btn-success uppercase text-white font-bold"> Join Us </button></NavLink>
 
                               }
                          </div>

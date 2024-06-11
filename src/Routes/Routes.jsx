@@ -26,6 +26,7 @@ import Payment from "../Pages/Pricing/Payment";
 import Comments from "../Pages/DashBorad/User/Comments";
 import SurveyorChart from "../Pages/DashBorad/Surveyor/SurveyorChart";
 import FeedBack from "../Pages/DashBorad/Surveyor/FeedBack";
+import AllPayments from "../Pages/DashBorad/Admin/AllPayments";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -111,6 +112,9 @@ import FeedBack from "../Pages/DashBorad/Surveyor/FeedBack";
         {
           path:'responseSurvey',
           element: <ResponseSurvey></ResponseSurvey>
+        },{
+          path:'payment',
+          element: <AllPayments></AllPayments>
         },
         // User 
         {

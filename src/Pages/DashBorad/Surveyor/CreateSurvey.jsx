@@ -1,9 +1,10 @@
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const CreateSurvey = () => {
-     const axiosPublic = useAxiosPublic()
+     const axiosSecure = useAxiosSecure();
      const handleSurveyForm = (e)=>{
           e.preventDefault();
           const title = e.target.title.value;
@@ -16,7 +17,7 @@ const CreateSurvey = () => {
           const vote = yesVote +noVote;
           console.log(vote);
           const surveyData = {title,description,category,deadline_date,options, yesVote,noVote, vote}
-          axiosPublic.post('/surveys',surveyData)
+          axiosSecure.post('/surveys',surveyData)
           .then(res =>{
                if(res.data.insertedId){
                     Swal.fire({

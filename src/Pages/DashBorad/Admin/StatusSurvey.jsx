@@ -1,14 +1,15 @@
 
 import useSurveys from "../../../Hooks/useSurveys";
 import { FaThumbsUp } from "react-icons/fa";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 
 const StatusSurvey = () => {
      const [surveys] = useSurveys();
-     const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure();
      
      const handleFeedBack = (e,survey) =>{
           e.preventDefault()
@@ -20,7 +21,7 @@ const StatusSurvey = () => {
           const createTime = survey.timestamp;
           const status = survey.status;
           const mainFeedBack = { feedback,newId,title,category,createTime,status }
-           axiosPublic.post(`/feedback`,mainFeedBack)
+           axiosSecure.post(`/feedback`,mainFeedBack)
            .then(res =>{
                if(res.data.insertedId){
                     Swal.fire({

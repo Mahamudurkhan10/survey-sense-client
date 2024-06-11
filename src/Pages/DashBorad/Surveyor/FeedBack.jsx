@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
  
 
 const FeedBack = () => {
-     const axiosPublic = useAxiosPublic()
+     const axiosSecure = useAxiosSecure();
      const { data: feedbacks=[], isPending: loading , refetch} = useQuery({
           queryKey: ['feedbacks'],
           queryFn: async () => {
-               const res = await axiosPublic.get(`/feedback`)
+               const res = await axiosSecure.get(`/feedback`)
 
 
                return res.data;

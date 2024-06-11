@@ -35,8 +35,8 @@ const Survey = () => {
                          </div>
                     </div>
                     <div className="text-center">
-                         <h1 className="text-4xl font-bold uppercase text-blue-900 mb-5 "> All Surveys Are here </h1>
-                         <p className="w-3/5 font-medium text-sm mx-auto text-center "> Exciting news! A new survey card is now available, offering fresh opportunities to share your opinions and shape the future. Don't miss out on this chance to make your voice heard! </p>
+                         <h1 className=" lg:text-4xl text-3xl font-bold uppercase text-blue-900 mb-5 "> All Surveys Are here </h1>
+                         <p className="lg:w-3/5 font-medium text-sm mx-auto text-center "> Exciting news! A new survey card is now available, offering fresh opportunities to share your opinions and shape the future. Don't miss out on this chance to make your voice heard! </p>
                     </div>
                     <div className="divider divider-info"></div>
                </div>
@@ -44,7 +44,7 @@ const Survey = () => {
 
                <div >
                     <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                         <TabList className={'flex gap-4 justify-between font-bold p-3 text-blue-500'}>
+                         <TabList className={'grid grid-cols-2 lg:grid-cols-6 text-xs lg:text-sm gap-4 justify-between font-bold p-3 text-blue-500'}>
                               <Tab >Employee Engagement</Tab>
                               <Tab>Customer Satisfaction</Tab>
                               <Tab>Product Feedback </Tab>

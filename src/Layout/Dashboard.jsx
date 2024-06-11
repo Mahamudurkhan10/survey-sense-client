@@ -6,7 +6,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-import { MdReportProblem } from "react-icons/md";
+import { MdPayment, MdReportProblem } from "react-icons/md";
 
 
 const Dashboard = () => {
@@ -26,12 +26,13 @@ const Dashboard = () => {
           switch (validUser?.role) {
                case 'admin':
                     return (
-                         <>
-                              
+                         <div className="flex flex-col gap-5 text-lg font-semibold text-blue-600">
+                              <li className="text-center text-3xl text-emerald-600 font-bold uppercase"> Admin Home </li>
                               <li> <NavLink to="/dashboard/allUsers"> <FaUsers /> All Users </NavLink> </li>
                               <li> <NavLink to="/dashboard/publishedSurvey"> <FaUsers /> Publish-UnPublish </NavLink> </li>
                               <li> <NavLink to="/dashboard/responseSurvey"> <FaUsers /> Responses Survey </NavLink> </li>
-                         </>
+                              <li> <NavLink to="/dashboard/payment"> <MdPayment /> All Payments </NavLink> </li>
+                         </div>
                     );
                case 'surveyor':
                     return (

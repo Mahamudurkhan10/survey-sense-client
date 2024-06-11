@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import { FaThumbsUp } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const SurveyResponse = () => {
-     const axiosPublic = useAxiosPublic()
+     const axiosSecure = useAxiosSecure();
      const { data: responses = [], isPending: loading, refetch } = useQuery({
           queryKey: ['responses'],
           queryFn: async () => {
-               const res = await axiosPublic.get(`/response`)
+               const res = await axiosSecure.get(`/response`)
 
 
                return res.data;
