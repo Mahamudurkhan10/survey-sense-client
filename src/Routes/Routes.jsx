@@ -28,6 +28,9 @@ import SurveyorChart from "../Pages/DashBorad/Surveyor/SurveyorChart";
 import FeedBack from "../Pages/DashBorad/Surveyor/FeedBack";
 import AllPayments from "../Pages/DashBorad/Admin/AllPayments";
 import PrivateRoutes from "./PrivateRoutes";
+import PrivateAdminRoutes from "./PrivateAdminRoutes";
+import PrivateSurveyorRoutes from "./PrivateSurveyorRoutes";
+import Contact from "../Pages/ContactUs/Contact";
  export  const router = createBrowserRouter([
      {
        path: "/",
@@ -63,6 +66,10 @@ import PrivateRoutes from "./PrivateRoutes";
         {
           path:'payment',
           element: <Payment></Payment>
+        },
+        {
+          path:'contact',
+          element:<Contact></Contact>
         }
        ]
      },
@@ -73,50 +80,50 @@ import PrivateRoutes from "./PrivateRoutes";
         // Surveyor
         {
           path:'surveyorChart',
-          element:<SurveyorChart></SurveyorChart>
+          element: <PrivateSurveyorRoutes><SurveyorChart></SurveyorChart></PrivateSurveyorRoutes>
         },
         {
           path:'createSurvey',
-          element:<CreateSurvey></CreateSurvey>
+          element: <PrivateSurveyorRoutes><CreateSurvey></CreateSurvey></PrivateSurveyorRoutes>
         },
         {
           path:'allSurvey',
-          element:<AllSurvey></AllSurvey>
+          element: <PrivateSurveyorRoutes><AllSurvey></AllSurvey></PrivateSurveyorRoutes>
 
         },
         {
           path:'surveyResponse',
-          element:<SurveyResponse></SurveyResponse>
+          element:<PrivateSurveyorRoutes><SurveyResponse></SurveyResponse></PrivateSurveyorRoutes>
         },
         {
           path:'update/:id',
-          element: <Update></Update>,
+          element: <PrivateSurveyorRoutes><Update></Update></PrivateSurveyorRoutes>,
           loader:({params})=> fetch(`http://localhost:5000/survey/${params.id}`)
         },
         {
           path:'responseDetails/:id',
-          element: <ResponseDetails></ResponseDetails>,
+          element: <PrivateSurveyorRoutes><ResponseDetails></ResponseDetails></PrivateSurveyorRoutes>,
           loader:({params}) => fetch(`http://localhost:5000/responseOne/${params.id}`)
         },
         {
           path:'feedBack',
-          element: <FeedBack></FeedBack>
+          element: <PrivateSurveyorRoutes><FeedBack></FeedBack></PrivateSurveyorRoutes>
         },
         // Admin
         {
           path:'allUsers',
-          element: <AllUsers></AllUsers>
+          element: <PrivateAdminRoutes><AllUsers></AllUsers></PrivateAdminRoutes>
         },
         {
           path:'publishedSurvey',
-          element: <StatusSurvey></StatusSurvey>
+          element: <PrivateAdminRoutes><StatusSurvey></StatusSurvey></PrivateAdminRoutes>
         },
         {
           path:'responseSurvey',
-          element: <ResponseSurvey></ResponseSurvey>
+          element: <PrivateAdminRoutes><ResponseSurvey></ResponseSurvey></PrivateAdminRoutes>
         },{
           path:'payment',
-          element: <AllPayments></AllPayments>
+          element: <PrivateAdminRoutes><AllPayments></AllPayments></PrivateAdminRoutes>
         },
         // User 
         {

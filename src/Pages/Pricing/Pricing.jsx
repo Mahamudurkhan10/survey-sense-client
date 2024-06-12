@@ -1,9 +1,15 @@
+import { Helmet } from "react-helmet";
 import { NavLink } from "react-router-dom";
 
 
 const Pricing = () => {
      return (
           <div>
+			<div>
+			<Helmet>
+                    <title> Pricing </title>
+               </Helmet>
+			</div>
                <section className="py-20 dark:bg-gray-100 dark:text-gray-800">
 	<div className="container px-4 mx-auto">
 		<div className="max-w-2xl mx-auto mb-16 text-center">

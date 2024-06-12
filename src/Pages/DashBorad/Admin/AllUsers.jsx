@@ -107,7 +107,7 @@ const AllUsers = () => {
         <table className="table w-full">
           <thead className='text-xl font-semibold bg-slate-400 text-white'>
             <tr>
-              <th>#</th>
+              <th></th>
               <th>Name</th>
               <th>Email</th>
               <th>Current Role</th>

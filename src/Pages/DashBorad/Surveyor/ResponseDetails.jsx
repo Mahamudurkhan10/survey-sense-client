@@ -38,7 +38,9 @@ const ResponseDetails = () => {
                                              <th> {inx + 1} </th>
                                              <td> {survey.email} </td>
                                              <td> {survey.name} </td>
-                                             <td className="flex gap-2" >  {survey.vote} <FaThumbsUp className="text-blue-600"></FaThumbsUp> </td>
+                                             <td className="flex gap-2" >  {
+                                             !survey.vote? '1':survey.vote
+                                             } <FaThumbsUp className="text-blue-600"></FaThumbsUp> </td>
                                         </tr>
                                    </>)}
 

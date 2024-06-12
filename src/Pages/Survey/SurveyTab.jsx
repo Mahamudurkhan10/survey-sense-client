@@ -2,9 +2,9 @@ import { FaThumbsUp } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 
-const SurveyTab = ({ survey }) => {
-    
-console.log(survey);
+const SurveyTab = ({ refetch, survey }) => {
+    refetch()
+ 
      return (
           <div>
                <h1 className="mb-5 text-center text-2xl lg:text-3xl font-bold text-green-700"> {survey.slice(0,1).map(c => <> {c.category} Surveys </>)} </h1>

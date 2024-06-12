@@ -4,10 +4,12 @@ import useAuth from "../../../Hooks/useAuth";
 import { LuLogIn, } from "react-icons/lu";
 
 import { SlLogout } from "react-icons/sl";
+import { RiSurveyLine } from "react-icons/ri";
 
 
 const Navbar = () => {
      const { user, logOut } = useAuth()
+     console.log(user?.displayName);
      const LogOut3 = () => {
           logOut()
      }
@@ -15,6 +17,7 @@ const Navbar = () => {
           <li> <NavLink to={'/'}><a> Home</a></NavLink> </li>
           <li> <NavLink to={'/survey/Employee Engagement'}><a> Survey </a></NavLink> </li>
           <li> <NavLink to={'/pricing'}><a> Pricing </a></NavLink> </li>
+          <li> <NavLink to={'/contact'}><a> Contact Us</a></NavLink> </li>
      </>
      const navItem2 = <>
 
@@ -33,7 +36,7 @@ const Navbar = () => {
                                       {navItem}
                                    </ul>
                               </div>
-                              <NavLink className={'flex'} to={'/'}><a className="btn btn-ghost text-xl text-green-400 ">Survey <span className="text-blue-600">Sense</span></a></NavLink>
+                              <NavLink className={'flex'} to={'/'}><a className="btn btn-ghost text-xl text-green-400 "> <RiSurveyLine className="text-blue-600"></RiSurveyLine> Survey <span className="text-blue-600">Sense</span></a></NavLink>
                          </div>
                          <div className="navbar-center  hidden lg:flex">
                               <ul className="menu menu-horizontal px-1">
@@ -46,7 +49,7 @@ const Navbar = () => {
                               {
                                    user ? <div><div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                         <div className="w-10 rounded-full">
-                                             <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                        <div className="tooltip" > <span> <img className="rounded-full size-10 mr-3 border-2 border-red-600" src={user?.photoURL || "https://i.ibb.co/YX7cm4v/bd886d7ccc6f8dd8db17e841233c9656.jpg"} alt="" /> </span></div>
                                         </div>
                                    </div>
                                         <ul tabIndex={0} className="menu space-y-3 text-black  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-300 rounded-box w-52">

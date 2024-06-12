@@ -242,7 +242,7 @@ const SurveyCardDetails = () => {
                                    </div>
                               </dialog>
                               {
-                                   oldUsers.role ==='proUser'? <> <button className="" onClick={() => document.getElementById('my_modal_7').showModal()}>
+                                   oldUsers.role ==='proUser'|| oldUsers.role ==='admin'||oldUsers.role ==='surveyor'? <> <button className="" onClick={() => document.getElementById('my_modal_7').showModal()}>
                                    <div className="btn grid size-20 shrink-0 place-content-center rounded-full border-2 border-indigo-500" aria-hidden="true">
                                         <h1 className="flex items-center gap-2"><FaComment className="text-xl" /></h1>
                                    </div>

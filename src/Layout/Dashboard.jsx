@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { MdPayment, MdReportProblem } from "react-icons/md";
 import { SlLogout } from "react-icons/sl";
+import { Helmet } from "react-helmet";
 
 
 const Dashboard = () => {
@@ -68,6 +69,11 @@ const Dashboard = () => {
      };
      return (
           <div className="flex">
+               <div>
+               <Helmet>
+                    <title> Dashboard </title>
+               </Helmet>
+               </div>
                <div className="w-64  min-h-screen bg-gray-200">
                     <ul className="menu p-4 space-y-4">
 
