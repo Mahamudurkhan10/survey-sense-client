@@ -47,7 +47,7 @@ import Contact from "../Pages/ContactUs/Contact";
         {
           path:'/surveyDetails/:id',
           element: <PrivateRoutes><SurveyCardDetails></SurveyCardDetails></PrivateRoutes>,
-          loader: ({params})=> fetch(`http://localhost:5000/surveyDetail/${params.id}`)
+          loader: ({params})=> fetch(`https://survey-sense-server-kohl.vercel.app/surveyDetail/${params.id}`)
         },
         {
           path:'/login',
@@ -98,12 +98,12 @@ import Contact from "../Pages/ContactUs/Contact";
         {
           path:'update/:id',
           element: <PrivateSurveyorRoutes><Update></Update></PrivateSurveyorRoutes>,
-          loader:({params})=> fetch(`http://localhost:5000/survey/${params.id}`)
+          loader:({params})=> fetch(`https://survey-sense-server-kohl.vercel.app/survey/${params.id}`)
         },
         {
           path:'responseDetails/:id',
           element: <PrivateSurveyorRoutes><ResponseDetails></ResponseDetails></PrivateSurveyorRoutes>,
-          loader:({params}) => fetch(`http://localhost:5000/responseOne/${params.id}`)
+          loader:({params}) => fetch(`https://survey-sense-server-kohl.vercel.app/responseOne/${params.id}`)
         },
         {
           path:'feedBack',
